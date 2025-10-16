@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Autos | The Pinnacle of Performance</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #e5e5e5;
+        }
+        .hero-bg {
+            background-image: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(10,10,10,1) 100%), url('https://images.unsplash.com/photo-1580273916550-4d53a5f63901?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .accent-gold {
+            color: #d4af37;
+        }
+        .bg-accent-gold {
+            background-color: #d4af37;
+        }
+        .border-accent-gold {
+            border-color: #d4af37;
+        }
+        .card-bg {
+            background-color: #1a1a1a;
+        }
+        .btn-primary {
+            @apply bg-accent-gold text-black font-bold py-3 px-6 rounded-lg transition-transform duration-300 ease-in-out transform hover:scale-105 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-amber-400;
+        }
+        .btn-secondary {
+            @apply bg-transparent border-2 border-accent-gold text-accent-gold font-bold py-3 px-6 rounded-lg transition-all duration-300 ease-in-out hover:bg-accent-gold hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-amber-400;
+        }
+        .filter-btn {
+            @apply px-4 py-2 text-sm font-medium text-gray-300 bg-gray-800 rounded-md hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-amber-400;
+        }
+        .filter-btn.active {
+            @apply bg-accent-gold text-black;
+        }
+        /* Modal styles */
+        .modal {
+            transition: opacity 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-50 backdrop-blur-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-black tracking-wider accent-gold">AURA AUTOS</a>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#showroom" class="text-gray-300 hover:text-accent-gold transition-colors">Showroom</a>
+                <a href="#calculator" class="text-gray-300 hover:text-accent-gold transition-colors">Financing</a>
+                <a href="#contact" class="text-gray-300 hover:text-accent-gold transition-colors">Contact</a>
+            </nav>
+            <a href="#contact" class="hidden md:block btn-secondary !py-2 !px-4">Schedule Viewing</a>
+            <button id="mobile-menu-btn" class="md:hidden text-white">
+                 <i data-feather="menu"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-90">
+             <a href="#showroom" class="block py-2 px-6 text-gray-300 hover:bg-gray-800">Showroom</a>
+             <a href="#calculator" class="block py-2 px-6 text-gray-300 hover:bg-gray-800">Financing</a>
+             <a href="#contact" class="block py-2 px-6 text-gray-300 hover:bg-gray-800">Contact</a>
+             <div class="p-4"><a href="#contact" class="block text-center btn-secondary w-full">Schedule Viewing</a></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-bg h-screen flex items-center justify-center text-center">
+            <div class="container mx-auto px-6">
+                <h1 class="text-4xl md:text-7xl font-black text-white uppercase tracking-wider leading-tight">Where Power <br>Meets <span class="accent-gold">Perfection</span></h1>
+                <p class="text-lg md:text-xl text-gray-300 mt-4 max-w-2xl mx-auto">Experience the zenith of automotive engineering. Discover our curated collection of the world's most exclusive supercars.</p>
+                <div class="mt-8">
+                    <a href="#showroom" class="btn-primary text-lg">Explore Collection</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Showroom Section -->
+        <section id="showroom" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-5xl font-bold">The Showroom</h2>
+                    <p class="text-gray-400 mt-2">Filter by brand or browse our entire unparalleled inventory.</p>
+                </div>
+                
+                <!-- Filters -->
+                <div id="filters" class="flex justify-center flex-wrap gap-2 md:gap-4 mb-12">
+                    <!-- Filter buttons will be dynamically inserted here -->
+                </div>
+
+                <!-- Vehicle Grid -->
+                <div id="vehicle-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Vehicle cards will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Financing Calculator Section -->
+        <section id="calculator" class="py-20 md:py-32 bg-black">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-5xl font-bold">Financing Calculator</h2>
+                    <p class="text-gray-400 mt-2">Estimate your payments on your dream machine.</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center card-bg p-8 rounded-lg shadow-2xl">
+                    <form id="finance-form" class="space-y-6">
+                        <div>
+                            <label for="vehicle-price" class="block text-sm font-medium text-gray-300">Vehicle Price ($)</label>
+                            <input type="number" id="vehicle-price" name="vehicle-price" value="450000" class="mt-1 block w-full bg-gray-700 border-gray-600 rounded-md shadow-sm py-3 px-4 text-white focus:ring-amber-400 focus:border-amber-400">
+                        </div>
+                        <div>
+                            <label for="down-payment" class="block text-sm font-medium text-gray-300">Down Payment ($)</label>
+                            <input type="number" id="down-payment" name="down-payment" value="50000" class="mt-1 block w-full bg-gray-700 border-gray-600 rounded-md shadow-sm py-3 px-4 text-white focus:ring-amber-400 focus:border-amber-400">
+                        </div>
+                        <div>
+                            <label for="interest-rate" class="block text-sm font-medium text-gray-300">Annual Interest Rate (%)</label>
+                            <input type="number" step="0.1" id="interest-rate" name="interest-rate" value="5.5" class="mt-1 block w-full bg-gray-700 border-gray-600 rounded-md shadow-sm py-3 px-4 text-white focus:ring-amber-400 focus:border-amber-400">
+                        </div>
+                        <div>
+                            <label for="loan-term" class="block text-sm font-medium text-gray-300">Loan Term (Years)</label>
+                            <select id="loan-term" name="loan-term" class="mt-1 block w-full bg-gray-700 border-gray-600 rounded-md shadow-sm py-3 px-4 text-white focus:ring-amber-400 focus:border-amber-400">
+                                <option>3</option>
+                                <option selected>5</option>
+                                <option>7</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full btn-primary">Calculate Payment</button>
+                    </form>
+                    <div class="text-center p-8 border-2 border-dashed border-gray-700 rounded-lg">
+                        <h3 class="text-lg font-medium text-gray-400">Estimated Monthly Payment</h3>
+                        <p id="monthly-payment" class="text-4xl md:text-6xl font-black accent-gold my-4">$0.00</p>
+                        <p class="text-sm text-gray-500">This is an estimate and does not include taxes, title, or other fees. Actual payment may vary.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-32">
+             <div class="container mx-auto px-6 text-center">
+                 <h2 class="text-3xl md:text-5xl font-bold">Book Your Private Viewing</h2>
+                 <p class="text-gray-400 mt-2 max-w-2xl mx-auto">Our specialists are ready to provide a personalized tour of our collection. Contact us to arrange an appointment.</p>
+                 <div class="mt-8">
+                     <p class="text-lg text-gray-300 flex items-center justify-center gap-3"><i data-feather="mail" class="accent-gold"></i> concierge@auraautos.com</p>
+                     <p class="text-lg text-gray-300 flex items-center justify-center gap-3 mt-2"><i data-feather="phone" class="accent-gold"></i> +1 (555) 777-9999</p>
+                     <div class="mt-10">
+                        <a href="#" class="btn-primary text-lg">Inquire Now</a>
+                     </div>
+                 </div>
+             </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-black py-8">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="#" class="hover:text-accent-gold transition-colors"><i data-feather="instagram"></i></a>
+                <a href="#" class="hover:text-accent-gold transition-colors"><i data-feather="twitter"></i></a>
+                <a href="#" class="hover:text-accent-gold transition-colors"><i data-feather="youtube"></i></a>
+            </div>
+            <p>&copy; 2025 Aura Autos. All Rights Reserved. For the Discerning Driver.</p>
+        </div>
+    </footer>
+    
+    <!-- Vehicle Detail Modal -->
+    <div id="vehicle-modal" class="modal fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none">
+        <div id="modal-content" class="modal-content card-bg w-full max-w-4xl max-h-full overflow-y-auto rounded-lg shadow-2xl relative transform scale-95">
+            <!-- Content will be injected by JavaScript -->
+        </div>
+    </div>
+
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- DATA ---
+            const vehicles = [
+                {
+                    make: 'Ferrari',
+                    model: 'SF90 Stradale',
+                    year: 2023,
+                    price: 625000,
+                    hp: 986,
+                    engine: '4.0L Twin-Turbo V8 Hybrid',
+                    topSpeed: 211,
+                    zeroToSixty: 2.5,
+                    imageUrl: 'https://images.unsplash.com/photo-1612763529819-a17c7c4f4b4f?q=80&w=2070&auto=format&fit=crop',
+                    description: 'The SF90 Stradale is the most powerful Prancing Horse ever, a perfect synthesis of cutting-edge technology, performance, and design. Its hybrid powertrain delivers breathtaking acceleration.'
+                },
+                {
+                    make: 'Lamborghini',
+                    model: 'Revuelto',
+                    year: 2024,
+                    price: 608000,
+                    hp: 1001,
+                    engine: '6.5L V12 Hybrid',
+                    topSpeed: 217,
+                    zeroToSixty: 2.5,
+                    imageUrl: 'https://images.unsplash.com/photo-1681457198888-5111130d2a8a?q=80&w=2070&auto=format&fit=crop',
+                    description: 'The Revuelto is the first-ever V12 plug-in hybrid HPEV from Lamborghini, defining a new paradigm in performance and driving pleasure with its futuristic design and unmatched power.'
+                },
+                {
+                    make: 'McLaren',
+                    model: '765LT Spider',
+                    year: 2022,
+                    price: 550000,
+                    hp: 755,
+                    engine: '4.0L Twin-Turbo V8',
+                    topSpeed: 205,
+                    zeroToSixty: 2.8,
+                    imageUrl: 'https://images.unsplash.com/photo-1634424391459-7a5c3798997a?q=80&w=1964&auto=format&fit=crop',
+                    description: 'Lighter, more powerful, and built for the track. The 765LT Spider is an engineering masterpiece, offering raw, unfiltered engagement between driver, car, and the road.'
+                },
+                 {
+                    make: 'Porsche',
+                    model: '911 GT3 RS',
+                    year: 2023,
+                    price: 241300,
+                    hp: 518,
+                    engine: '4.0L Naturally Aspirated Flat-6',
+                    topSpeed: 184,
+                    zeroToSixty: 3.0,
+                    imageUrl: 'https://images.unsplash.com/photo-1678844463757-51d0877992d9?q=80&w=2070&auto=format&fit=crop',
+                    description: 'A street-legal race car, the GT3 RS features the most extreme aerodynamics ever seen on a 911. It lives for the corners and thrives on the limit, offering an unparalleled track experience.'
+                },
+                {
+                    make: 'Ferrari',
+                    model: '296 GTB',
+                    year: 2023,
+                    price: 338255,
+                    hp: 819,
+                    engine: '3.0L Twin-Turbo V6 Hybrid',
+                    topSpeed: 205,
+                    zeroToSixty: 2.9,
+                    imageUrl: 'https://images.unsplash.com/photo-1632709292053-5d75940250d4?q=80&w=1974&auto=format&fit=crop',
+                    description: 'Marking a new era for the V6 engine in a Ferrari, the 296 GTB combines thrilling performance with the pure emotion of driving, all thanks to its innovative plug-in hybrid system.'
+                },
+                {
+                    make: 'Lamborghini',
+                    model: 'Huracán Tecnica',
+                    year: 2023,
+                    price: 244795,
+                    hp: 631,
+                    engine: '5.2L Naturally Aspirated V10',
+                    topSpeed: 202,
+                    zeroToSixty: 3.2,
+                    imageUrl: 'https://images.unsplash.com/photo-1653842412586-8e7751a4f329?q=80&w=2070&auto=format&fit=crop',
+                    description: 'The Huracán Tecnica is the perfect fusion of lifestyle and performance. Rear-wheel drive and a roaring V10 heart, it delivers feedback and excitement for both road and track.'
+                }
+            ];
+            
+            // --- DOM ELEMENTS ---
+            const vehicleGrid = document.getElementById('vehicle-grid');
+            const filtersContainer = document.getElementById('filters');
+            const financeForm = document.getElementById('finance-form');
+            const monthlyPaymentEl = document.getElementById('monthly-payment');
+            const vehicleModal = document.getElementById('vehicle-modal');
+            const modalContent = document.getElementById('modal-content');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+
+            // --- FUNCTIONS ---
+            
+            /**
+             * Renders vehicle cards to the grid.
+             * @param {Array} vehiclesToRender - The array of vehicle objects to display.
+             */
+            function renderVehicles(vehiclesToRender) {
+                vehicleGrid.innerHTML = '';
+                vehiclesToRender.forEach((vehicle, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'card-bg rounded-lg overflow-hidden shadow-xl transform hover:-translate-y-2 transition-transform duration-300 ease-in-out';
+                    card.innerHTML = `
+                        <div class="h-64 overflow-hidden">
+                            <img src="${vehicle.imageUrl}" alt="${vehicle.make} ${vehicle.model}" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold">${vehicle.year} ${vehicle.make} ${vehicle.model}</h3>
+                            <p class="text-2xl font-black accent-gold mt-2">$${vehicle.price.toLocaleString()}</p>
+                            <div class="flex justify-between items-center text-gray-400 mt-4 border-t border-gray-700 pt-4">
+                                <span class="flex items-center gap-2"><i data-feather="zap" class="w-4 h-4 text-amber-400"></i> ${vehicle.hp} HP</span>
+                                <span class="flex items-center gap-2"><i data-feather="clock" class="w-4 h-4 text-amber-400"></i> ${vehicle.zeroToSixty}s 0-60</span>
+                            </div>
+                            <button class="w-full mt-6 btn-secondary view-details-btn" data-index="${index}">View Details</button>
+                        </div>
+                    `;
+                    vehicleGrid.appendChild(card);
+                });
+                feather.replace(); // Re-initialize icons
+            }
+
+            /**
+             * Renders filter buttons based on vehicle makes.
+             */
+            function renderFilters() {
+                const makes = ['All', ...new Set(vehicles.map(v => v.make))];
+                filtersContainer.innerHTML = makes.map(make => `
+                    <button class="filter-btn ${make === 'All' ? 'active' : ''}" data-make="${make}">${make}</button>
+                `).join('');
+            }
+            
+             /**
+             * Displays the vehicle details in a modal.
+             * @param {number} index - The index of the vehicle in the main array.
+             */
+            function showVehicleModal(index) {
+                const vehicle = vehicles[index];
+                modalContent.innerHTML = `
+                    <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-500 hover:text-white z-10">
+                        <i data-feather="x" class="w-8 h-8"></i>
+                    </button>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                         <div class="h-64 lg:h-full min-h-[300px]">
+                            <img src="${vehicle.imageUrl}" class="w-full h-full object-cover rounded-l-lg" alt="${vehicle.make} ${vehicle.model}">
+                        </div>
+                        <div class="p-8">
+                            <h2 class="text-3xl font-bold">${vehicle.year} ${vehicle.make} ${vehicle.model}</h2>
+                            <p class="text-3xl font-black accent-gold mt-2">$${vehicle.price.toLocaleString()}</p>
+                            <p class="mt-4 text-gray-300">${vehicle.description}</p>
+                            <div class="mt-6 space-y-3 border-t border-gray-700 pt-6">
+                                <div class="flex justify-between"><strong class="font-medium text-gray-400">Engine:</strong> <span>${vehicle.engine}</span></div>
+                                <div class="flex justify-between"><strong class="font-medium text-gray-400">Horsepower:</strong> <span>${vehicle.hp} HP</span></div>
+                                <div class="flex justify-between"><strong class="font-medium text-gray-400">Top Speed:</strong> <span>${vehicle.topSpeed} mph</span></div>
+                                <div class="flex justify-between"><strong class="font-medium text-gray-400">0-60 mph:</strong> <span>${vehicle.zeroToSixty} s</span></div>
+                            </div>
+                            <button class="w-full mt-8 btn-primary">Schedule a Viewing</button>
+                        </div>
+                    </div>
+                `;
+                feather.replace();
+                vehicleModal.classList.remove('opacity-0', 'pointer-events-none');
+                modalContent.classList.remove('scale-95');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+
+                document.getElementById('close-modal-btn').addEventListener('click', closeVehicleModal);
+            }
+            
+            /**
+             * Closes the vehicle detail modal.
+             */
+            function closeVehicleModal() {
+                 vehicleModal.classList.add('opacity-0', 'pointer-events-none');
+                 modalContent.classList.add('scale-95');
+                 document.body.style.overflow = 'auto';
+            }
+
+            // --- EVENT LISTENERS ---
+
+            // Filter button clicks
+            filtersContainer.addEventListener('click', (e) => {
+                if (e.target.classList.contains('filter-btn')) {
+                    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                    e.target.classList.add('active');
+                    
+                    const make = e.target.dataset.make;
+                    const filteredVehicles = make === 'All' ? vehicles : vehicles.filter(v => v.make === make);
+                    renderVehicles(filteredVehicles);
+                }
+            });
+            
+            // View Details button clicks (event delegation)
+            vehicleGrid.addEventListener('click', (e) => {
+                if(e.target.classList.contains('view-details-btn')) {
+                    const index = e.target.dataset.index;
+                    showVehicleModal(index);
+                }
+            });
+
+            // Finance form submission
+            financeForm.addEventListener('submit', (e) => {
+                e.preventDefault();
